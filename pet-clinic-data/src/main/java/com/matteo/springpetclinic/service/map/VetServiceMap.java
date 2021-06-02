@@ -1,11 +1,13 @@
 package com.matteo.springpetclinic.service.map;
 
 import com.matteo.springpetclinic.model.Vet;
-import com.matteo.springpetclinic.service.CrudService;
+import com.matteo.springpetclinic.service.VetService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
-public class VetServiceMap extends AbstractMapService<Vet, Long> implements CrudService<Vet, Long> {
+@Service
+public class VetServiceMap extends AbstractMapService<Vet, Long> implements VetService {
   @Override
   public Set<Vet> findAll() {
     return super.findAll();
@@ -18,7 +20,7 @@ public class VetServiceMap extends AbstractMapService<Vet, Long> implements Crud
 
   @Override
   public Vet save(Vet vet) {
-    return super.save(vet.getId(), vet);
+    return super.save(vet);
   }
 
   @Override
