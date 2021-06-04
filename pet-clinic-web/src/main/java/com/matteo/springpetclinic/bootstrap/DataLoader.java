@@ -1,10 +1,7 @@
 package com.matteo.springpetclinic.bootstrap;
 
 import com.matteo.springpetclinic.model.*;
-import com.matteo.springpetclinic.service.OwnerService;
-import com.matteo.springpetclinic.service.PetTypeService;
-import com.matteo.springpetclinic.service.SpecialityService;
-import com.matteo.springpetclinic.service.VetService;
+import com.matteo.springpetclinic.service.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -17,12 +14,19 @@ public class DataLoader implements CommandLineRunner {
   private final VetService vetService;
   private final PetTypeService petTypeService;
   private final SpecialityService specialityService;
+  private final VisitService visitService;
 
-  public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialityService specialityService) {
+  public DataLoader(
+      OwnerService ownerService,
+      VetService vetService,
+      PetTypeService petTypeService,
+      SpecialityService specialityService,
+      VisitService visitService) {
     this.ownerService = ownerService;
     this.vetService = vetService;
     this.petTypeService = petTypeService;
     this.specialityService = specialityService;
+    this.visitService = visitService;
   }
 
   @Override
@@ -98,5 +102,11 @@ public class DataLoader implements CommandLineRunner {
     vet2.setLastName("Marvel");
     vet2.getSpecialities().add(savedSpeciality2);
     vetService.save(vet2);
+
+    Visit visit1 = new Visit();
+    visit1.setPet(pet1);
+    visit1.setDate(LocalDate.now());
+    visit1.setDescription("just a checkup");
+    visitService.save(visit1);
   }
 }
