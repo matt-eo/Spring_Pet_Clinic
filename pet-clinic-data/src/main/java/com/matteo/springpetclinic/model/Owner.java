@@ -1,5 +1,6 @@
 package com.matteo.springpetclinic.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -10,7 +11,6 @@ import java.util.Set;
 
 @Getter
 @Setter
-@EqualsAndHashCode
 @Entity
 @Table(name = "owners")
 public class Owner extends Person {

@@ -1,5 +1,6 @@
 package com.matteo.springpetclinic.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,7 +12,6 @@ import java.util.Set;
 
 @Getter
 @Setter
-@EqualsAndHashCode
 @Entity
 @Table(name = "pets")
 public class Pet extends BaseEntity {

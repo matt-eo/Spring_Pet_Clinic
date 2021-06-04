@@ -10,7 +10,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Service
-@Profile("springdatajpa")
+@Profile("springDataJpa")
 public class OwnerServiceJpaImpl implements OwnerService {
 
   private final OwnerRepository ownerRepository;
