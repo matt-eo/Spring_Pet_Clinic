@@ -1,7 +1,6 @@
 package com.matteo.springpetclinic.model;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.EqualsAndHashCode;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -26,7 +25,21 @@ public class Owner extends Person {
   @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
   private Set<Pet> pets = new HashSet<>();
 
-  public Owner() {
-  }
+  public Owner() {}
 
+  @Builder
+  public Owner(
+      Long id,
+      String firstName,
+      String lastName,
+      String address,
+      String city,
+      String telephone,
+      Set<Pet> pets) {
+    super(id, firstName, lastName);
+    this.address = address;
+    this.city = city;
+    this.telephone = telephone;
+    this.pets = pets;
+  }
 }
