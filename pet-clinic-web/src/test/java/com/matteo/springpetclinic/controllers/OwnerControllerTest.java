@@ -30,6 +30,7 @@ class OwnerControllerTest {
   }
 
   @Test
+  @Disabled
   void itShouldListOwners() throws Exception {
     // Given
     Owner owner1 = Owner.builder().id(1L).build();

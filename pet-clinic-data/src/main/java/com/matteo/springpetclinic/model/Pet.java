@@ -1,9 +1,11 @@
 package com.matteo.springpetclinic.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -27,10 +29,24 @@ public class Pet extends BaseEntity {
   private Owner owner;
 
   @Column(name = "birth_date")
+  @DateTimeFormat(pattern = "yyyy-MM-dd")
   private LocalDate birthDate;
 
   @OneToMany(mappedBy = "pet", cascade = CascadeType.ALL)
   private Set<Visit> visits = new HashSet<>();
 
   public Pet() {}
+
+  @Builder
+  public Pet(
+      Long id, String name, PetType petType, Owner owner, LocalDate birthDate, Set<Visit> visits) {
+    super(id);
+    this.name = name;
+    this.petType = petType;
+    this.owner = owner;
+    this.birthDate = birthDate;
+    if (visits == null || visits.size() > 0 ) {
+      this.visits = visits;
+    }
+  }
 }
